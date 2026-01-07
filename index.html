@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,21 +9,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    :root{
-      --accent: #0ea5e9;      /* Sky Blue */
-      --accent-2: #22c55e;    /* Green */
-      --bg-main: #020617;     /* Very Dark Blue */
+    :root {
+      --accent: #0ea5e9;
+      /* Sky Blue */
+      --accent-2: #d946ef;
+      /* Fuchsia/Pink */
+      --bg-main: #020617;
+      /* Very Dark Blue */
       --bg-soft: #020617;
-      --text-main: #f8fafc;   /* Near white */
-      --text-soft: #cbd5f5;   /* Soft gray-blue */
+      --text-main: #e2e8f0;
+      /* Cool White */
+      --text-soft: #c4b5fd;
+      /* Soft Lavender */
     }
 
     body {
-      background: radial-gradient(circle at top left, rgba(14,165,233,0.12), transparent 40%),
-                  radial-gradient(circle at bottom right, rgba(34,197,94,0.12), transparent 40%),
-                  #020617;
+      background: radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(217, 70, 239, 0.15), transparent 40%),
+        #020617;
       color: var(--text-main);
       overflow-x: hidden;
       position: relative;
@@ -33,39 +44,48 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(14,165,233,0.18), transparent 55%);
+      background: radial-gradient(circle at center, rgba(14, 165, 233, 0.18), transparent 55%);
       pointer-events: none;
       animation: spotlightMove 12s ease-in-out infinite;
       z-index: -1;
     }
 
     @keyframes spotlightMove {
-      0% { transform: translate(-10%, -10%); }
-      50% { transform: translate(10%, 10%); }
-      100% { transform: translate(-10%, -10%); }
+      0% {
+        transform: translate(-10%, -10%);
+      }
+
+      50% {
+        transform: translate(10%, 10%);
+      }
+
+      100% {
+        transform: translate(-10%, -10%);
+      }
     }
 
-    /* Floating particles background */
-    body::before {
-      content: "";
+    /* Canvas Background */
+    #bg-canvas {
       position: fixed;
       inset: 0;
-      background-image:
-        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.35), transparent),
-        radial-gradient(2px 2px at 80% 40%, rgba(255,255,255,0.25), transparent),
-        radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.3), transparent),
-        radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,0.2), transparent),
-        radial-gradient(2px 2px at 50% 20%, rgba(255,255,255,0.3), transparent);
-      animation: floatParticles 30s linear infinite;
       z-index: -1;
+      opacity: 0.15;
+      /* Very subtle so text is readable */
     }
 
-    @keyframes floatParticles {
-      from { transform: translateY(0); }
-      to { transform: translateY(-200px); }
+    /* Ensure content is readable */
+    body {
+      position: relative;
     }
-      
-    
+
+    header {
+      /* Keep existing styles, just ensure z-index is high enough */
+      z-index: 100;
+    }
+
+
+
+
 
     header {
       position: fixed;
@@ -74,7 +94,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(15,23,42,0.75);
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(12px);
       padding: 18px 8%;
       display: flex;
@@ -83,7 +103,10 @@
       z-index: 100;
     }
 
-    header h2 { color: var(--accent); font-weight: 700; }
+    header h2 {
+      color: var(--accent);
+      font-weight: 700;
+    }
 
     nav a {
       margin-left: 28px;
@@ -93,10 +116,19 @@
       transition: 0.3s;
     }
 
-    nav a:hover { color: var(--accent-2); }
+    nav a:hover {
+      color: var(--accent-2);
+    }
 
-    section { padding: 90px 8%; }
-    section h2 { font-size: 34px; margin-bottom: 25px; color: var(--accent); }
+    section {
+      padding: 90px 8%;
+    }
+
+    section h2 {
+      font-size: 34px;
+      margin-bottom: 25px;
+      color: var(--accent);
+    }
 
     .hero {
       min-height: 100vh;
@@ -106,22 +138,43 @@
       gap: 40px;
     }
 
-    .avatar { display: flex; justify-content: center; }
+    .avatar {
+      display: flex;
+      justify-content: center;
+    }
+
     .avatar img {
       width: 320px;
       height: 320px;
       border-radius: 50%;
       border: 6px solid var(--accent);
-      box-shadow: 0 0 45px rgba(245,197,66,0.6);
+      box-shadow: 0 0 45px rgba(139, 92, 246, 0.5);
       background: white;
       object-fit: cover;
     }
 
-    .hero-text h1 { font-size: 56px; color: var(--accent); }
-    .hero-text h3 { font-weight: 400; margin-bottom: 20px; color: var(--text-soft); }
-    .hero-text p { line-height: 1.8; max-width: 600px; }
+    .hero-text h1 {
+      font-size: 56px;
+      color: var(--accent);
+    }
 
-    .buttons { margin-top: 28px; display: flex; gap: 18px; align-items: center; }
+    .hero-text h3 {
+      font-weight: 400;
+      margin-bottom: 20px;
+      color: var(--text-soft);
+    }
+
+    .hero-text p {
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .buttons {
+      margin-top: 28px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
 
     .btn {
       padding: 12px 26px;
@@ -138,80 +191,87 @@
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #2a2205;
     }
+
     /* SOCIAL ICONS – FULL EFFECTS */
-.socials {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
+    .socials {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
 
-.socials a {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(14,165,233,0.08);
-  color: var(--text-main);
-  position: relative;
-  transition: 0.3s ease;
-}
+    .socials a {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14, 165, 233, 0.08);
+      color: var(--text-main);
+      position: relative;
+      transition: 0.3s ease;
+    }
 
-/* Tooltip */
-.socials a::after {
-  content: attr(aria-label);
-  position: absolute;
-  bottom: -36px;
-  background: rgba(15,23,42,0.95);
-  color: var(--text-main);
-  padding: 4px 10px;
-  font-size: 12px;
-  border-radius: 6px;
-  opacity: 0;
-  transform: translateY(6px);
-  pointer-events: none;
-  transition: 0.3s;
-  white-space: nowrap;
-}
+    /* Tooltip */
+    .socials a::after {
+      content: attr(aria-label);
+      position: absolute;
+      bottom: -36px;
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
 
-.socials a:hover::after {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .socials a:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-/* Hover glow + lift */
-.socials a:hover {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #020617;
-  box-shadow: 0 0 18px rgba(14,165,233,0.45);
-  transform: translateY(-3px) scale(1.05);
-}
+    /* Hover glow + lift */
+    .socials a:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #020617;
+      box-shadow: 0 0 18px rgba(217, 70, 239, 0.6);
+      transform: translateY(-3px) scale(1.05);
+    }
 
-/* Icon size */
-.socials svg {
-  width: 22px;
-  height: 22px;
-}
+    /* Icon size */
+    .socials svg {
+      width: 22px;
+      height: 22px;
+    }
 
-/* Entrance animation */
-.socials a {
-  animation: iconPop 0.8s ease forwards;
-}
+    /* Entrance animation */
+    .socials a {
+      animation: iconPop 0.8s ease forwards;
+    }
 
-.socials a:nth-child(1) { animation-delay: 0.3s; }
-.socials a:nth-child(2) { animation-delay: 0.45s; }
+    .socials a:nth-child(1) {
+      animation-delay: 0.3s;
+    }
 
-@keyframes iconPop {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+    .socials a:nth-child(2) {
+      animation-delay: 0.45s;
+    }
+
+    @keyframes iconPop {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
 
     .grid {
@@ -221,16 +281,18 @@
     }
 
     .card {
-      background: linear-gradient(135deg, rgba(245,197,66,0.08), rgba(212,175,55,0.08));
+      background: rgba(15, 23, 42, 0.6);
       padding: 22px;
       border-radius: 18px;
-      border: 1px solid rgba(245,197,66,0.25);
+      border: 1px solid rgba(14, 165, 233, 0.15);
+      backdrop-filter: blur(10px);
       transition: 0.3s;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(245,197,66,0.25);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.25);
+      border-color: rgba(217, 70, 239, 0.5);
     }
 
     footer {
@@ -241,165 +303,206 @@
     }
 
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
-      .avatar { order: -1; }
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 140px;
+      }
+
+      .avatar {
+        order: -1;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <h2>Yousef</h2>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <header>
+    <h2>Yousef</h2>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<section class="hero" id="home">
-  <div class="avatar">
-    <img src="profile.png" alt="Yousef Odeh" />
-  </div>
+  <section class="hero" id="home">
+    <div class="avatar">
+      <img src="profile.png" alt="Yousef Odeh" />
+    </div>
 
-  <div class="hero-text">
-    <small>Hi, I'm</small>
-    <h1>Yousef Odeh</h1>
-    <h3><span id="typing-text"></span></h3>
+    <div class="hero-text">
+      <small>Hi, I'm</small>
+      <h1>Yousef Odeh</h1>
+      <h3><span id="typing-text"></span></h3>
+      <p>
+        Software Engineering student at Princess Sumaya University for Technology (PSUT) with a strong focus on
+        competitive programming, low-level development, and algorithmic problem solving. 2nd-year Software Engineering
+        student at Princess Sumaya University for Technology (PSUT) with solid foundations in programming,
+        object-oriented design, and web development. Actively developing practical skills through academic projects and
+        competitive programming contests.
+      </p>
+
+      <div class="buttons">
+        <a class="btn" href="Yousef_Odeh_Resume.pdf" download>Download CV</a>
+
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/yousef-odeh-941257330/" aria-label="LinkedIn">
+            <!-- LinkedIn SVG (keep yours) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+            </svg>
+          </a>
+
+          <a href="https://github.com/yousefammmar" aria-label="GitHub">
+            <!-- GitHub SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
     <p>
-      Software Engineering student at Princess Sumaya University for Technology (PSUT) with a strong focus on competitive programming, low-level development, and algorithmic problem solving. 2nd-year Software Engineering student at Princess Sumaya University for Technology (PSUT) with solid foundations in programming, object-oriented design, and web development. Actively developing practical skills through academic projects and competitive programming contests.
+      I am a Software Engineering student at PSUT with a deep interest in competitive programming and system-level
+      development. I enjoy tackling complex problems, optimizing performance, and continuously improving my algorithmic
+      thinking through contests and real-world projects.
     </p>
+  </section>
 
-    <div class="buttons">
-      <a class="btn" href="Yousef_Odeh_Resume.pdf" download>Download CV</a>
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="grid">
+      <div class="card">C++</div>
+      <div class="card">Java</div>
+      <div class="card">C</div>
+      <div class="card">C++</div>
+      <div class="card">C#</div>
+      <div class="card">HTML, CSS, JavaScript</div>
+      <div class="card">SQL & PL/SQL</div>
+      <div class="card">Object-Oriented Programming</div>
+      <div class="card">Problem Solving</div>
+    </div>
+  </section>
 
-      <div class="socials">
-        <a href="https://www.linkedin.com/in/yousef-odeh-941257330/" aria-label="LinkedIn">
-          <!-- LinkedIn SVG (keep yours) -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-          </svg>
-        </a>
+  <section id="experience">
+    <h2>Projects & Achievements</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Car Dealership Management System (C++ / OOP)</h3>
+        <p>
+          Designed and implemented an object-oriented system to manage cars, customers, and sales operations, applying
+          encapsulation, inheritance, and modular design principles.
+        </p>
+        </p>
+      </div>
 
-        <a href="https://github.com/yousefammmar" aria-label="GitHub">
-          <!-- GitHub SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-          </svg>
-        </a>
+      <div class="card">
+        <h3>To-Do List Web Application</h3>
+        <p>
+          Developed a responsive web application using HTML, CSS, and JavaScript that allows users to add, delete, and
+          manage daily tasks through an interactive interface.
+        </p>
+        </p>
+      </div>
+
+
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications & Achievements</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>DevOps on AWS & Project Management</h3>
+        <p style="margin-top: 10px; color: var(--text-soft); font-size: 0.9em;">AWS (2025)</p>
+      </div>
+      <div class="card">
+        <h3>JCPC — Ranked 65 / 100</h3>
+        <p style="margin-top: 10px; color: var(--text-soft); font-size: 0.9em;">JCPC (2025)</p>
+      </div>
+      <div class="card">
+        <h3>Amman CPC — Ranked 55 / 75</h3>
+        <p style="margin-top: 10px; color: var(--text-soft); font-size: 0.9em;">Amman CPC (2025)</p>
+      </div>
+      <div class="card">
+        <h3>Data Science & AI</h3>
+        <p style="margin-top: 10px; color: var(--text-soft); font-size: 0.9em;">PSUT (2024)</p>
+      </div>
+      <div class="card">
+        <h3>Electrical Engineering</h3>
+        <p style="margin-top: 10px; color: var(--text-soft); font-size: 0.9em;">Eureka (2022)</p>
+      </div>
+      <div class="card">
+        <h3>Web Design Course</h3>
+        <p style="margin-top: 10px; color: var(--text-soft); font-size: 0.9em;">PSUT (2021)</p>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: you20240781@std.psut.edu.jo</p>
+    <p>Phone: +962 782 534 394</p>
+    <p>Location: Amman, Jordan</p>
+  </section>
 
-<section id="about">
-  <h2>About Me</h2>
-  <p>
-    I am a Software Engineering student at PSUT with a deep interest in competitive programming and system-level development. I enjoy tackling complex problems, optimizing performance, and continuously improving my algorithmic thinking through contests and real-world projects.
-  </p>
-</section>
+  <footer>
+    © 2026 Yousef Odeh — Portfolio Website
+  </footer>
 
-<section id="skills">
-  <h2>Technical Skills</h2>
-  <div class="grid">
-    <div class="card">C++</div>
-    <div class="card">Java</div>
-    <div class="card">C</div>
-    <div class="card">C++</div>
-    <div class="card">C#</div>
-    <div class="card">HTML, CSS, JavaScript</div>
-    <div class="card">SQL & PL/SQL</div>
-    <div class="card">Object-Oriented Programming</div>
-    <div class="card">Problem Solving</div>
-  </div>
-</section>
+  <script>
+    var info = ["Software Developer", "Frontend Developer", "Problem Solver", "Tech Enthusiast"];
+    var index = 0;
+    var speed = 100;
+    var pause = 2000;
+    var deletingSpeed = 50;
+    let charIndex = 0;
+    let isDeleting = false;
 
-<section id="experience">
-  <h2>Projects & Achievements</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Car Dealership Management System (C++ / OOP)</h3>
-      <p>
-        Designed and implemented an object-oriented system to manage cars, customers, and sales operations, applying encapsulation, inheritance, and modular design principles.
-      </p>
-      </p>
-    </div>
+    function type() {
+      const name = info[index];
+      const t_elem = document.getElementById('typing-text');
 
-    <div class="card">
-      <h3>To-Do List Web Application</h3>
-      <p>
-        Developed a responsive web application using HTML, CSS, and JavaScript that allows users to add, delete, and manage daily tasks through an interactive interface.
-      </p>
-      </p>
-    </div>
+      if (!t_elem) return;
 
-    <div class="card">
-      <h3>Certifications & Achievements</h3>
-      <ul style="line-height:1.9; padding-left:18px;">
-        <li>DevOps on AWS & Project Management — AWS (2025)</li>
-        <li>JCPC — Ranked 65 / 100 (2025)</li>
-        <li>Amman CPC — Ranked 55 / 75 (2025)</li>
-        <li>Data Science & AI — PSUT (2024)</li>
-        <li>Electrical Engineering — Eureka (2022)</li>
-        <li>Web Design Course — PSUT (2021)</li>
-      </ul>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: you20240781@std.psut.edu.jo</p>
-  <p>Phone: +962 782 534 394</p>
-  <p>Location: Amman, Jordan</p>
-</section>
-
-<footer>
-  © 2026 Yousef Odeh — Portfolio Website
-</footer>
-
-<script>
-var info = ["Software Developer","Frontend Developer","Problem Solver","Tech Enthusiast"];
-var index = 0;
-var speed = 100;
-var pause = 2000;
-var deletingSpeed = 50;
-let charIndex = 0;
-let isDeleting = false;
-
-function type() {
-    const name = info[index];
-    const t_elem = document.getElementById('typing-text');
-
-    if (!t_elem) return;
-
-    if (isDeleting) {
+      if (isDeleting) {
         t_elem.textContent = name.substring(0, charIndex - 1);
         charIndex--;
-    } else {
+      } else {
         t_elem.textContent = name.substring(0, charIndex + 1);
         charIndex++;
-    }
+      }
 
-    let typeSpeedVar = isDeleting ? deletingSpeed : speed;
+      let typeSpeedVar = isDeleting ? deletingSpeed : speed;
 
-    if (!isDeleting && charIndex === name.length) {
+      if (!isDeleting && charIndex === name.length) {
         typeSpeedVar = pause;
         isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
+      } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         index = (index + 1) % info.length;
         typeSpeedVar = 500;
+      }
+
+      setTimeout(type, typeSpeedVar);
     }
 
-    setTimeout(type, typeSpeedVar);
-}
-
-document.addEventListener("DOMContentLoaded", type);
-</script>
+    document.addEventListener("DOMContentLoaded", type);
+  </script>
+  <canvas id="bg-canvas"></canvas>
+  <script src="matrix.js"></script>
 </body>
+
 </html>
